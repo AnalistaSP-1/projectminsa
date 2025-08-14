@@ -28,15 +28,19 @@ class MinsaDataController extends Controller
 {
     public function index()
     {//HOLA
-         $minsaData = MinsaData::all();
-         return view('Screen.List_minsa.mdata', compact('minsaData'));
-
+        //  $minsaData = MinsaData::all();
+        //     return view('Screen.List_minsa.mdata', compact('minsaData'));
         // $minsaData = DB::table('minsa_data as md')
         //     ->leftJoin('data_transfer as dt', 'md.histcli', '=', 'dt.histcli')
         //     ->select('md.*', 'dt.created_by')
         //     ->get();
 //TU NO VALESSSSSSSSSSSSSSSSS JAAAAAAAAAAAAAA
-return view('Screen.List_minsa.mdata', compact('minsaData'));
+
+     $minsaData = MinsaData::leftJoin('data_transfer', 'minsa_data.historia_clinica', '=', 'data_transfer.histcli')
+                                ->select('minsa_data.*', 'data_transfer.created_by as estado_envio')
+                                ->get();
+         return view('Screen.List_minsa.mdata', compact('minsaData'));
+
     }
 
  public function edit($historia_clinica){

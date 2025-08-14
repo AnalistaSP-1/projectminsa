@@ -43,11 +43,22 @@
                     <td>{{ $data->codigocie }}</td>
                     <td>{{ $data->descripcion_pais }}</td>
                     <td>{{ $data->tipoepisodio }}</td>
-
                     <td>
     <a href="{{ route('minsa.edit', $data->historia_clinica) }}" class="btn btn-sm btn-primary">
                     {{-- Agrega más columnas si necesitas --}}
-                </tr>
+                  
+    </td>
+  <td>
+
+                @if (isset($data->estado_envio) && $data->estado_envio == 1)
+             <span class="badge bg-primary">Exitosamente</span>
+                    @else
+             <span class="badge bg-danger">Pendiente</span>
+                    @endif
+                    </td>
+    </tr>
+
+    
             @endforeach
         </tbody>
     </table>
