@@ -90,7 +90,7 @@ public function update(Request $request, $historia_clinica)
     if (!$data) {
         return redirect()->back()->with('error', 'No se encontró el registro en MinsaData');
     }
-
+//EXAMPLER
     try {
         $mDatatransfer = new DataTransfer();
         $mDatatransfer->histcli = $data->historia_clinica;
