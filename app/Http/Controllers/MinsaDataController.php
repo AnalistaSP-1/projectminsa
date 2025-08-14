@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\DB;
 class MinsaDataController extends Controller
 {
     public function index()
-    {
+    {//HOLA
          $minsaData = MinsaData::all();
          return view('Screen.List_minsa.mdata', compact('minsaData'));
 
@@ -35,7 +35,7 @@ class MinsaDataController extends Controller
         //     ->leftJoin('data_transfer as dt', 'md.histcli', '=', 'dt.histcli')
         //     ->select('md.*', 'dt.created_by')
         //     ->get();
-
+//TU NO VALESSSSSSSSSSSSSSSSS JAAAAAAAAAAAAAA
 return view('Screen.List_minsa.mdata', compact('minsaData'));
     }
 
