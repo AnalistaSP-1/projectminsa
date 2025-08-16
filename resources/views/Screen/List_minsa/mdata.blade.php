@@ -21,7 +21,7 @@
                 <th>descripcion_pais</th>
                 <th>tipoepisodio</th>
                 <th>ejecutar</th>
-                <th>Enviado</th>
+                <th>estado</th>
 
                 {{-- Agrega más columnas si necesitas --}}
             </tr>
@@ -44,16 +44,17 @@
                     <td>{{ $data->descripcion_pais }}</td>
                     <td>{{ $data->tipoepisodio }}</td>
                     <td>
-    <a href="{{ route('minsa.edit', $data->historia_clinica) }}" class="btn btn-sm btn-primary">
+    <a href="{{ route('minsa.edit', $data->historia_clinica) }}" class="btn btn-sm btn-warning ">
                     {{-- Agrega más columnas si necesitas --}}
+                    Editar</a>
                   
     </td>
   <td>
 
                 @if (isset($data->estado_envio) && $data->estado_envio == 1)
-             <span class="badge bg-primary">Exitosamente</span>
+             <span class="badge  bg-primary">Enviado Exitosamente</span>
                     @else
-             <span class="badge bg-danger">Pendiente</span>
+             <span class="badge bg-danger">Pendiente Enviado</span>
                     @endif
                     </td>
     </tr>

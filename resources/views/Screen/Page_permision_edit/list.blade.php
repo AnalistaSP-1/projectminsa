@@ -1,6 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.menu1')
 
-@section('content')
+@section('titulo')
+LISTADO USUARIOS
+@endsection
+
+@section('container')
 <div class="container">
     <h1>Lista de Permisos</h1>
 
