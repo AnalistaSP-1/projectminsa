@@ -92,4 +92,7 @@ CREAR USUARIO
         <a href="{{ route('users.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
+<footer>
+      &copy; System Epidemiologia - Todos los derechos reservados INNOVACIÓN Y DESARROLLO {{ now()->year }}
+    </footer>
 @endsection

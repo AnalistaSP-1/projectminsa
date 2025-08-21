@@ -55,4 +55,7 @@ PERFIL DE USUARIO
 
     {{-- <button type="submit" class="btn btn-success">Actualizar Perfil</button> --}}
 </form>
+<footer>
+      &copy; System Epidemiologia - Todos los derechos reservados INNOVACIÓN Y DESARROLLO {{ now()->year }}
+    </footer>
 @endsection

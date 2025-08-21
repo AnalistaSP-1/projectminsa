@@ -1,7 +1,7 @@
-
-@extends('layouts.app')
-
-@section('content')
+@extends('layouts.menu1')
+ @section('titulo')
+@endsection
+@section('container')
 <div class="container">
     <h2>Crear Permiso</h2>
 
@@ -15,4 +15,7 @@
         <button type="submit" class="btn btn-success">Guardar</button>
     </form>
 </div>
+ <footer>
+      &copy; System Epidemiologia - Todos los derechos reservados INNOVACIÓN Y DESARROLLO {{ now()->year }}
+    </footer>
 @endsection

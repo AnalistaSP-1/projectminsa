@@ -1,3 +1,9 @@
+@extends('layouts.menu1')
+ @section('titulo')
+@endsection
+@section('container')
+
+
 @extends('layouts.app')
 
 @section('content')
@@ -16,4 +22,8 @@
         <button type="submit" class="btn btn-primary">Actualizar</button>
     </form>
 </div>
+ <footer>
+      &copy; System Epidemiologia - Todos los derechos reservados INNOVACIÓN Y DESARROLLO {{ now()->year }}
+    </footer>
 @endsection
+

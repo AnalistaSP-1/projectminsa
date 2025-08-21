@@ -15,4 +15,7 @@
     </div>
     <a href="{{ route('roles.index') }}" class="btn btn-secondary">Volver</a>
 </div>
+ <footer>
+      &copy; System Epidemiologia - Todos los derechos reservados INNOVACIÓN Y DESARROLLO {{ now()->year }}
+    </footer>
 @endsection

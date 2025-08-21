@@ -50,7 +50,7 @@ class MinsaDataController extends Controller
     $case_status = case_status::all(); // <- Trae todos los niveles de educación
     $cause_of_death = cause_of_death::all(); // <- Trae todos los niveles de educación
     $class_Diagnosticado = class_Diagnosticado::all(); // <- Trae todos los niveles de educación
-    $type_of_seguro = type_of_seguro::all(); // <- Trae todos los niveles de educación
+    $type_of_seguro = type_of_seguro::all(); // 
     $reference_type = reference_type::all(); // <- Trae todos los niveles de educación
     $tnm_tdx_codes = tnm_tdx_codes::all(); // <- Trae todos los niveles de educación
     $tnm_ndx_codes = tnm_ndx_codes::all(); // <- Trae todos los niveles de educación
@@ -110,6 +110,7 @@ public function update(Request $request, $historia_clinica)
         $mDatatransfer->pais = $data->codigo_pais;
         $mDatatransfer->direccion = $data->direccion;
         $mDatatransfer->fechanac = $data->fechanac;
+        $mDatatransfer->condaseg = $request->type_of_seguro;
         $mDatatransfer->ocupacion = $request->ocupacion; 
         $mDatatransfer->instruccion = $request->nivel_of_education; 
         $mDatatransfer->clase_caso = $request->class_Diagnosticado; 
@@ -125,6 +126,7 @@ public function update(Request $request, $historia_clinica)
         $mDatatransfer->lateralidad = $request->laterality;
         $mDatatransfer->base_diag = $request->m_basic_ofdiagnosis;
         $mDatatransfer->causa_muerte = $request->cause_of_death;
+        $mDatatransfer->lug_deceso = $request->lugar_of_occurrence;
 
         
 

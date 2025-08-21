@@ -164,7 +164,7 @@
    
 
             <div class="col-md-4 mb-3">
-                <label for="type_of_seguro" class="form-label">Tipo de Seguro</label>
+                <label for="type_of_seguro" class="form-control">Tipo de Seguro</label>
                 <select name="type_of_seguro" id="type_of_seguro" class="form-control">
                     <option value="">-- Seleccione tipo de seguro --</option>
                     @foreach($type_of_seguro as $item)

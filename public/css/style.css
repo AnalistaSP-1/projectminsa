@@ -48,3 +48,8 @@
   display: inline-block;
   vertical-align: top;
 }
+.container {
+  max-width: 100% !important; /* evita que quede centrado con márgenes */
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}

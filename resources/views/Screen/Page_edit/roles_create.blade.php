@@ -1,4 +1,5 @@
-{{-- filepath: resources/views/User/Page_edit/roles_create.blade.php --}}
+@extends('layouts.menu1') {{-- o layouts.app, según estés usando --}}
+@section('container')
 @extends('layouts.app')
 
 @section('content')
@@ -27,4 +28,7 @@
         <a href="{{ route('roles.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
+ <footer>
+      &copy; System Epidemiologia - Todos los derechos reservados INNOVACIÓN Y DESARROLLO {{ now()->year }}
+    </footer>
 @endsection

@@ -38,7 +38,7 @@ return view('Screen.Page_permision_edit.list', compact('permissions'));
 
     public function edit(Permission $permission)
     {
-return view('Screens.Page_permision.edit', compact('permission'));
+    return view('Screen.Page_permision_edit.edit', compact('permission'));
     }
 
 
