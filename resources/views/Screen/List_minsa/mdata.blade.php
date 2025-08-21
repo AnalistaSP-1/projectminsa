@@ -1,7 +1,7 @@
 @extends('layouts.menu1')
 @section('container')
 <div class="container mt-4">
-    <h2 class="mb-4">Listado de Datos MINSA</h2>
+    <h2 class="mb-4">Listado de Pacientes</h2>
 
     <table class="table table-bordered table-striped">
         <thead>
@@ -44,11 +44,18 @@
                     <td>{{ $data->descripcion_pais }}</td>
                     <td>{{ $data->tipoepisodio }}</td>
                     <td>
-    <a href="{{ route('minsa.edit', $data->historia_clinica) }}" class="btn btn-sm btn-warning ">
-                    {{-- Agrega más columnas si necesitas --}}
-                    Editar</a>
+                {{-- {         <a href="{{ route('minsa.edit', $data->historia_clinica) }}" class="btn btn-sm btn-warning ">
+}                    {{-- Agrega más columnas si necesitas --}}
+                    {{-- Editar</a> --}}
                   
-    </td>
+    {{-- </td>  --}}
+    @if(isset($data->estado_envio) && $data->estado_envio == 1)
+                    <span class="badge bg-success">No editable</span>
+                @else
+                    <a href="{{ route('minsa.edit', $data->historia_clinica) }}" class="btn btn-sm btn-warning">
+                        Editar
+                    </a>
+                @endif
   <td>
 
                 @if (isset($data->estado_envio) && $data->estado_envio == 1)

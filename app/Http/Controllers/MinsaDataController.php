@@ -37,8 +37,13 @@ class MinsaDataController extends Controller
 //TU NO VALESSSSSSSSSSSSSSSSS JAAAAAAAAAAAAAA
 
      $minsaData = MinsaData::leftJoin('data_transfer', 'minsa_data.historia_clinica', '=', 'data_transfer.histcli')
-                                ->select('minsa_data.*', 'data_transfer.created_by as estado_envio')
-                                ->get();
+                                ->leftJoin('users', 'data_transfer.created_by', '=', 'users.id')
+                                ->select('minsa_data.*', 
+                                DB::raw('CASE WHEN data_transfer.ID IS NULL THEN 0 ELSE 1 END as estado_envio'),
+                                'users.name as nombre_usuario'
+                                )
+                                   ->orderBy('minsa_data.id', 'desc')
+->get();                              //  ->get();
          return view('Screen.List_minsa.mdata', compact('minsaData'));
 
     }
