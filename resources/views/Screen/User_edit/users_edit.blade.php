@@ -23,7 +23,7 @@ LISTADO USUARIOS
 
         <div class="mb-3">
             <label for="dni">DNI:</label>
-            <input type="text" name="dni" class="form-control" value="{{ $user->dni }}" required> 
+            <input type="text" name="dni" class="form-control" value="{{ $user->document_number }}" required> 
         </div>
 
         <div class="mb-3">
