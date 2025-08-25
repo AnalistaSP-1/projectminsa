@@ -115,6 +115,18 @@
                 <label for="codigo_pais" class="form-label">Código País</label>
                 <input type="text" id="codigo_pais" value="{{ old('codigo_pais', $data->codigo_pais) }}" class="form-control" disabled>
             </div>
+
+
+
+             <div class="col-md-3 mb-3">
+                <label for="codigo_pais" class="form-label">Fecha  Primera evaluacion</label>
+                <input type="text" id="codigo_pais" value="{{ old('codigo_pais', $data->fecha_min) }}" class="form-control" disabled>
+            </div>
+            
+             <div class="col-md-3 mb-3">
+                <label for="codigo_pais" class="form-label">Fecha  Ultima evaluacion</label>
+                <input type="text" id="codigo_pais" value="{{ old('codigo_pais', $data->fecha_max) }}" class="form-control" disabled>
+            </div>
         </div>
 
         {{-- ===================== DATOS ADICIONALES ===================== --}}
@@ -349,7 +361,46 @@
 
 
         
-        
+           <div class="col-md-3 mb-3">
+    <label for="fecha_papanicolau" class="form-label">Últ. Papanicolau</label>
+    <input type="date" 
+           name="fecha_papanicolau" 
+           id="fecha_papanicolau" 
+           class="form-control"
+           value="{{ old('fecha_papanicolau', isset($data->fecha_ult_papanico) ? \Carbon\Carbon::parse($data->fecha_ult_papanico)->format('Y-m-d') : '') }}">
+</div>
+
+
+        <div class="col-md-3 mb-3">
+    <label for="fecha_ult_mamo" class="form-label">Últ. Mamografía</label>
+    <input type="date" 
+           name="fecha_ult_mamo" 
+           id="fecha_ult_mamo" 
+           class="form-control"
+           value="{{ old('fecha_ult_mamo', isset($data->fecha_ult_mamo) ? \Carbon\Carbon::parse($data->fecha_ult_mamo)->format('Y-m-d') : '') }}">
+</div>
+
+ <div class="col-md-4 mb-3">
+<label for="rec_vac_papiloma" class="form-label">VACUNA PAPILOMA</label>
+
+    <select name="rec_vac_papiloma" id="rec_vac_papiloma" class="form-select" aria-label="Default select example">
+         <option value="">-- Seleccione --</option>
+        <option value="1" {{ old('rec_vac_papiloma', $data->rec_vac_papiloma ?? '') == "1" ? 'selected' : '' }}>Sí</option>
+        <option value="0" {{ old('rec_vac_papiloma', $data->rec_vac_papiloma ?? '') == "0" ? 'selected' : '' }}>No</option>
+    </select>
+
+ <div class="col-md-4 mb-3">
+ {{-- <div class="form-group"> --}}
+    <label for="temf_dias">Tiempo de enfermedad</label>
+    <input type="text"
+            class="form-control"
+            id="temf_dias"
+            name="temf_dias" 
+            placeholder="Tiempo de enfermedad"
+            value="{{old('temf_dias', $data->temf_dias ?? '')}}"
+             >
+  </div>
+  
 
  {{-- <div class="col-md-3 mb-3">
             <label for="diagnostic_service_department" class="form-label"> DEPARTAMENTO O SERVICIO QUE REALIZA EL DIAGNOSTICO</label>

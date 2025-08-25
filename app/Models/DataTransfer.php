@@ -11,4 +11,8 @@ class DataTransfer extends Model
     
     protected $table = 'data_transfer';
     public $timestamps = false;
+    protected $fillable = [
+    ];
+
+
 }

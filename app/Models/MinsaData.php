@@ -33,7 +33,8 @@ class MinsaData extends Model
         'clinic_id',
         'tipoepisodio',
         'medico',
-        'created_by'
+        'created_by',
+        'ubnc'
     ];
 
 

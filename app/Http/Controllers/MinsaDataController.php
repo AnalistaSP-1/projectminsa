@@ -22,6 +22,7 @@ use App\Models\first_diasnosis_method;
 use App\Models\m_basic_ofdiagnosis;
 use App\Models\diagnostic_service_department;   
 use App\Models\grado_of_diferentiation;
+use App\Models\diagnostic;
 use Illuminate\Support\Facades\DB;
 
 class MinsaDataController extends Controller
@@ -74,7 +75,9 @@ class MinsaDataController extends Controller
     $m_basic_ofdiagnosis = m_basic_ofdiagnosis::all(); // <- Trae todos los niveles de educación
     $diagnostic_service_department = diagnostic_service_department::all(); // <- Trae todos los niveles de educación
     $grado_of_diferentiation = grado_of_diferentiation::all(); // <- Trae todos los niveles de educación
-     return view('Screen.List_minsa.edit_form', 
+    $diagnostic = diagnostic::all(); // <- Trae todos los niveles de educación
+    
+    return view('Screen.List_minsa.edit_form', 
      compact(
         'data',
         'ocupaciones',
@@ -94,6 +97,7 @@ class MinsaDataController extends Controller
         'm_basic_ofdiagnosis',
         'diagnostic_service_department',
         'grado_of_diferentiation',
+        'diagnostic',
     ));
  }
  
@@ -139,10 +143,21 @@ public function update(Request $request, $historia_clinica)
         $mDatatransfer->base_diag = $request->m_basic_ofdiagnosis;
         $mDatatransfer->causa_muerte = $request->cause_of_death;
         $mDatatransfer->lug_deceso = $request->lugar_of_occurrence;
+        $mDatatransfer->fecha_pri_evaluacion = $data->fecha_min;
+        $mDatatransfer->fecha_ult_control = $data->fecha_max;
+        $mDatatransfer->causa_muerte = $request->cause_of_death;
+        $mDatatransfer->ubigeo_nac = $data->ubnc;
+        //NUEVO 25082025
+        $mDatatransfer->fecha_ult_papanico = $request->fecha_papanicolau;
+        $mDatatransfer->fecha_ult_mamo = $request->fecha_ult_mamo;
+        $mDatatransfer->rec_vac_papiloma = $request->rec_vac_papiloma;
+        $mDatatransfer->temf_dias = $request->temf_dias;
 
-        
+        //NUEVO 250825 15:18
+$mDatatransfer->dx_clinico = $request->dx_clinico;
 
-        $mDatatransfer->created_at = now();
+
+        $mDatatransfer->created_at = now(); 
         $mDatatransfer->created_by = auth()->id();
         $mDatatransfer->save();
 
