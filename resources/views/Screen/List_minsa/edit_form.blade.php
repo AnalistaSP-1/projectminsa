@@ -400,7 +400,22 @@
             value="{{old('temf_dias', $data->temf_dias ?? '')}}"
              >
   </div>
-  
+<div class="col-md-6 mb-3">
+    <label for="diagnostico" class="form-label">Diagnóstico (CIE)</label>
+    <select id="diagnostico" class="form-control"></select>
+    <!-- Guardará la descripción -->
+    <input type="hidden" name="dx_clinico" id="dx_clinico" value="{{ old('dx_clinico', $data->diagnostico_nombre ?? '') }}">
+</div>
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
  {{-- <div class="col-md-3 mb-3">
             <label for="diagnostic_service_department" class="form-label"> DEPARTAMENTO O SERVICIO QUE REALIZA EL DIAGNOSTICO</label>
@@ -423,3 +438,38 @@
     </form>
 </div>
 @endsection
+@push('scripts')
+<script>
+$('#diagnostico').select2({
+    ajax: {
+        url: '/diagnostic/search',
+        dataType: 'json',
+        delay: 250,
+        data: function (params) {
+            return { q: params.term };
+        },
+        processResults: function (data) {
+            return {
+                results: data
+            };
+        }
+    },
+    placeholder: 'Buscar diagnóstico',
+    minimumInputLength: 2
+});
+
+// Cuando seleccionas un diagnóstico
+$('#diagnostico').on('select2:select', function (e) {
+    var data = e.params.data;
+    $('#dx_clinico').val(data.text); // descripción
+    // si quieres guardar el código también, entonces:
+    // $('#codigocie').val(data.id);
+});
+
+// Capturar el texto seleccionado y guardarlo en el hidden
+$('#diagnostico').on('select2:select', function (e) {
+    var data = e.params.data;
+    $('#dx_clinico').val(data.text); // Guardamos la descripción
+});
+</script>
+@endpush

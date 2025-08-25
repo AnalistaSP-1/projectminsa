@@ -154,7 +154,8 @@ public function update(Request $request, $historia_clinica)
         $mDatatransfer->temf_dias = $request->temf_dias;
 
         //NUEVO 250825 15:18
-$mDatatransfer->dx_clinico = $request->dx_clinico;
+$mDatatransfer->dx_clinico = $request->dx_clinico; // descripción
+
 
 
         $mDatatransfer->created_at = now(); 
