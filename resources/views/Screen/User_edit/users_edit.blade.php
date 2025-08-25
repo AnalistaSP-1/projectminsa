@@ -33,7 +33,7 @@ LISTADO USUARIOS
                 <option value="0" {{ !$user->active ? 'selected' : '' }}>No</option>
             </select>
         </div>
-
+{{-- hola --}}
         <div class="mb-3">
             <label for="role_id">Rol:</label>
             <select name="role_id" class="form-control">

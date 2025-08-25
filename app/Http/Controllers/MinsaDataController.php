@@ -26,8 +26,9 @@ use Illuminate\Support\Facades\DB;
 
 class MinsaDataController extends Controller
 {
-    public function index()
-    {//HOLA
+    public function index(Request $request)
+    {
+        //HOLA
         //  $minsaData = MinsaData::all();
         //     return view('Screen.List_minsa.mdata', compact('minsaData'));
         // $minsaData = DB::table('minsa_data as md')
@@ -35,15 +36,21 @@ class MinsaDataController extends Controller
         //     ->select('md.*', 'dt.created_by')
         //     ->get();
 //TU NO VALESSSSSSSSSSSSSSSSS JAAAAAAAAAAAAAA
+    $idClinica = $request->session()->get('sedeId');
+            if (!$idClinica) {
+        return redirect()->route('login')
+            ->withErrors(['sedeId' => 'No se seleccionó ninguna clínica.']);
+    }
 
-     $minsaData = MinsaData::leftJoin('data_transfer', 'minsa_data.historia_clinica', '=', 'data_transfer.histcli')
+     $minsaData = MinsaData::Where('minsa_data.clinic_id', $idClinica)
+                                   ->leftJoin('data_transfer', 'minsa_data.historia_clinica', '=', 'data_transfer.histcli')
                                 ->leftJoin('users', 'data_transfer.created_by', '=', 'users.id')
                                 ->select('minsa_data.*', 
                                 DB::raw('CASE WHEN data_transfer.ID IS NULL THEN 0 ELSE 1 END as estado_envio'),
                                 'users.name as nombre_usuario'
                                 )
                                    ->orderBy('minsa_data.id', 'desc')
-->get();                              //  ->get();
+                                   ->get();                              //  ->get();
          return view('Screen.List_minsa.mdata', compact('minsaData'));
 
     }
