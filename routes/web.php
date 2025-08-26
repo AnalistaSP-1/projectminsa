@@ -7,7 +7,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\MinsaDataController;
 use App\Http\Controllers\DiagnosticController;
-
+use App\Http\Controllers\TopographyControlador;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,4 +58,5 @@ Route::put('/minsa-data/{historia_clinica}', [MinsaDataController::class, 'updat
 Route::get('/minsa/envio', [MinsaDataController::class, 'envio'])->name('minsa.envio');
 Route::get('/diagnostic/search', [DiagnosticController::class, 'search']);
 
-//Route::put('/minsa-data/{historia_clinica}', [MinsaDataController::class, 'update'])->name('minsa.update');
+//26-08-25
+Route::get('/topography/search', [TopographyControlador::class, 'search']);

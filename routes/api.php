@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DiagnosticController;
+use App\Http\Controllers\TopographyControlador;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,4 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/diagnostic/search', [DiagnosticController::class, 'search']);
 
-
+Route::get('/topography/search', [TopographyControlador::class, 'search']);
