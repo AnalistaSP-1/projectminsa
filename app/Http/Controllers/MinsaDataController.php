@@ -167,8 +167,11 @@ public function update(Request $request, $historia_clinica)
         $mDatatransfer->fecha_tra_cir = $request->fecha_tra_cir;
         $mDatatransfer->tra_med_nuclear = $request->tra_med_nuclear;
         $mDatatransfer->fecha_tra_med_nuclear = $request->fecha_tra_med_nuclear;
+        $mDatatransfer->tra_ter_bio  = $request->tra_ter_bio; 
+        $mDatatransfer->fecha_tra_ter_bio  = $request->fecha_tra_ter_bio; 
 
-
+        $mDatatransfer->tra_rad = $request->tra_rad; 
+        $mDatatransfer->fecha_tra_rad  = $request->fecha_tra_rad; 
 
         $mDatatransfer->created_at = now(); 
         $mDatatransfer->created_by = auth()->id();

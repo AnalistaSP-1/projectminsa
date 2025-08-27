@@ -537,14 +537,13 @@
     toggleFecha(); // Estado inicial
     select.addEventListener('change', toggleFecha);
 </script>
-///////////////
 </div>
         {{-- ===================== DIAGNÓSTICOS ===================== --}}
 
 {{-- Indicador Tratamiento Medicina Nucelar --}}
 
    <div class="col-md-3">   
-     <label for="tra_med_nuclear" class="form-label">Tratamiento Medicina Nuclear</label>
+    <label for="tra_med_nuclear" class="form-label">Tratamiento Medicina Nuclear</label>
     <select name="tra_med_nuclear" id="tra_med_nuclear" class="form-select" aria-label="Default select example">
         <option value="">-- Seleccione --</option>
         <option value="1" {{ old('tra_med_nuclear', $data->tra_med_nuclear ?? '') == "1" ? 'selected' : '' }}>Sí</option>
@@ -552,7 +551,7 @@
     </select>
 </div>
 
-<div class="col-md-4 mb-3" id="campo-fecha" hidden>
+<div class="col-md-4 mb-3" id="campo-fecha-nuclear" hidden>
     <label for="fecha_tra_med_nuclear" class="form-label">Fecha Tratamiento Medicina Nuclear</label>
     <input type="date"
         name="fecha_tra_med_nuclear"
@@ -560,24 +559,70 @@
         class="form-control"
         value="{{ old('fecha_tra_med_nuclear', isset($data->fecha_tra_med_nuclear) ? \Carbon\Carbon::parse($data->fecha_tra_med_nuclear)->format('Y-m-d') : '') }}">
 </div>
+<script>
+    const selectNuclear = document.getElementById('tra_med_nuclear');
+    const campoFechaNuclear = document.getElementById('campo-fecha-nuclear');
+    const toggleFechaNuclear = () => campoFechaNuclear.hidden = (selectNuclear.value !== "1");
+    toggleFechaNuclear(); // Estado inicial
+    selectNuclear.addEventListener('change', toggleFechaNuclear);
+    </script>
+
+{{-- 270825v3 --}}
+
+ <div class="col-md-3">   
+    <label for="tra_ter_bio" class="form-label">Tratamiento Terapia Biologica</label>
+    <select name="tra_ter_bio" id="tra_ter_bio" class="form-select" aria-label="Default select example">
+        <option value="">-- Seleccione --</option>
+        <option value="1" {{ old('tra_ter_bio', $data->tra_ter_bio ?? '') == "1" ? 'selected' : '' }}>Sí</option>
+        <option value="0" {{ old('tra_ter_bio', $data->tra_ter_bio ?? '') == "0" ? 'selected' : '' }}>No</option>
+    </select>
+ </div>
+<div class="col-md-4 mb-3" id="campo-fecha-biologico" hidden>
+    <label for="fecha_tra_ter_bio" class="form-label">Fecha Tratamiento Terapia Biologica</label>
+    <input type="date"
+        name="fecha_tra_ter_bio"
+        id="fecha_tra_ter_bio"
+        class="form-control"
+        value="{{ old('fecha_tra_ter_bio', isset($data->fecha_tra_ter_bio) ? \Carbon\Carbon::parse($data->fecha_tra_ter_bio)->format('Y-m-d') : '') }}">
+</div>
+<script>
+    const selectTerapia = document.getElementById('tra_ter_bio');
+    const campoFechaTerapia = document.getElementById('campo-fecha-biologico');
+    const toggleFechaTerapia = () => campoFechaTerapia.hidden = (selectTerapia.value !== "1");
+    toggleFechaTerapia(); // Estado inicial
+    selectTerapia.addEventListener('change', toggleFechaTerapia);
+    </script>
+
+{{-- 270825v3.1 Indicador Tratamiento Radioterapia  --}}
+<div class="col-md-3">   
+    <label for="tra_rad" class="form-label">Tratamiento Radioterapia</label>
+    <select name="tra_rad" id="tra_rad" class="form-select" aria-label="Default select example">
+        <option value="">-- Seleccione --</option>
+        <option value="1" {{ old('tra_rad', $data->tra_rad ?? '') == "1" ? 'selected' : '' }}>Sí</option>
+        <option value="0" {{ old('tra_rad', $data->tra_rad ?? '') == "0" ? 'selected' : '' }}>No</option>
+    </select>
+</div>
+
+<div class="col-md-4 mb-3" id="campo-fecha-rad" hidden>
+    <label for="fecha_tra_rad" class="form-label">Fecha Tratamiento Radioterapia</label>
+    <input type="date"
+        name="fecha_tra_rad"
+        id="fecha_tra_rad"
+        class="form-control"
+        value="{{ old('fecha_tra_rad', isset($data->fecha_tra_rad) ? \Carbon\Carbon::parse($data->fecha_tra_rad)->format('Y-m-d') : '') }}">
+</div>
 
 <script>
-    const select = document.getElementById('tra_med_nuclear');
-    const campoFecha = document.getElementById('campo-fecha');
+    const selectRad = document.getElementById('tra_rad');
+    const campoFechaRad = document.getElementById('campo-fecha-rad');
 
-    const toggleFecha = () => {
-        campoFecha.hidden = (select.value !== "1");
-    };
+    const toggleFechaRad = () => campoFechaRad.hidden = (selectRad.value !== "1");
 
-    toggleFecha(); // Estado inicial
-    select.addEventListener('change', toggleFecha);
+    toggleFechaRad(); // Estado inicial
+    selectRad.addEventListener('change', toggleFechaRad);
 </script>
-       </div>
-                </div>
-           
-        </div>
-    </div>
-</div>
+
+
         {{-- ===================== BOTONES ===================== --}}
         <div class="d-flex gap-2 mt-3">
             <button type="submit" class="btn btn-success">Enviar datos</button>
