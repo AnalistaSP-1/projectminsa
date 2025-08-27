@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DiagnosticController;
 use App\Http\Controllers\TopographyControlador;
+use App\Http\Controllers\MorfologiaControlador;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +25,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/diagnostic/search', [DiagnosticController::class, 'search']);
 
 Route::get('/topography/search', [TopographyControlador::class, 'search']);
+
+Route::get('/morfologia/search', [MorfologiaControlador::class, 'search']);

@@ -158,6 +158,8 @@ public function update(Request $request, $historia_clinica)
 
         //NUEVO 260825 08:49
 $mDatatransfer->cod_topo = $request->cod_topo;
+        //NUEVO 270825 08:21
+$mDatatransfer->cod_morfo = $request->cod_morfo;
 
 
         $mDatatransfer->created_at = now(); 

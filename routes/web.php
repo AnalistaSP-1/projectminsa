@@ -8,6 +8,9 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\MinsaDataController;
 use App\Http\Controllers\DiagnosticController;
 use App\Http\Controllers\TopographyControlador;
+
+
+use App\Http\Controllers\MorfologiaControlador;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,5 +61,7 @@ Route::put('/minsa-data/{historia_clinica}', [MinsaDataController::class, 'updat
 Route::get('/minsa/envio', [MinsaDataController::class, 'envio'])->name('minsa.envio');
 Route::get('/diagnostic/search', [DiagnosticController::class, 'search']);
 
-//26-08-25
+//26v1
 Route::get('/topography/search', [TopographyControlador::class, 'search']);
+//26v2
+Route::get('/morfologia/search', [MorfologiaControlador::class, 'search']);

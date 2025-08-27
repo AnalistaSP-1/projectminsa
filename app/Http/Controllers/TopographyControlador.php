@@ -9,17 +9,17 @@ class TopographyControlador extends Controller
     //
     public function search(Request $request)
     {
-         $searchTerm = $request->input('q', '');
+          $searchTerm = $request->input('q', '');
 
-    $diagnostics = topography_codes::where('description', 'LIKE', "%$searchTerm%")
-        ->orWhere('code', 'LIKE', "%$searchTerm%")
-        ->limit(10)
-        ->get([
-            'code as id',      // Select2 espera "id"
-            'description as text' // Select2 espera "text"
-        ]);
-
-    return response()->json($diagnostics);
-    }
-
-}
+        $topo = topography_codes::where('description', 'LIKE', "$searchTerm%")
+            ->orWhere('cod', 'LIKE', "$searchTerm%")
+            ->limit(10)
+            ->get()
+            ->map(function ($item){
+return[
+  'id' => $item->cod,       // ← aquí va el código real
+            'text' => $item->description
+        ];
+            });
+            return response()->json($topo);
+        }}

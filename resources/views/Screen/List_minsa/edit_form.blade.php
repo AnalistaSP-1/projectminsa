@@ -76,7 +76,7 @@
                             </div>
 
 
-                <div class="col-md-3 mb-3">
+                              <div class="col-md-3 mb-3">
                                 <label for="telefono_res" class="form-label">Telefono</label>
                                 <input type="text" id="telefono_res" value="{{ old('telefono_res', $data->telefono_res) }}" class="form-control" disabled>
                             </div>
@@ -155,10 +155,6 @@
             </div>
 
          
-
-       
-
-   
 
             <div class="col-md-4 mb-3">
                 <label for="type_of_seguro" class="form-control">Tipo de Seguro</label>
@@ -310,7 +306,6 @@
             </select>
         </div>
 
-
           <div class="col-md-3 mb-3">
             <label for="m_basic_ofdiagnosis" class="form-label"> DEPARTAMENTO O SERVICIO QUE REALIZA EL DIAGNOSTICO</label>
             <select name="diagnostic_service_department" id="diagnostic_service_department" class="form-control">
@@ -392,11 +387,48 @@
                 </ul>
             </div>
         @endif
-        
+        </div>
 
 {{-- 260823 0847 --}}
 
+    <div class="col-md-6 mb-3">
+    <label for="topography" class="form-label">Código de topografía</label>
+    <select id="topography" class="form-control"></select>
+    <input type="hidden" name="cod_topo" id="cod_topo" value="{{ old('cod_topo', $data->cod_topo ?? '') }}">
+</div>
 
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        </div>
+
+{{-- 260825 1656 --}}
+
+
+    <div class="col-md-6 mb-3">
+    <label for="morfologia" class="form-label">Seleccione morfologia</label>
+    <select id="morfologia" class="form-control"></select>
+    <input type="hidden" name="cod_morfo" id="cod_morfo" value="{{old('cod_morfo',$data->cod_morfo ?? '')}}">
+    </div>
+         @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ( $errors->all() as $error )
+                    <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        </div>
+
+        
+        {{-- 270825 1656 --}}
 
 
         {{-- ===================== BOTONES ===================== --}}
@@ -444,5 +476,64 @@
         @endpush
     
         {{-- API2 --}}
-        
-  
+        @push('scripts')
+            <script>
+        $('#topography').select2({
+        ajax: {
+            url:  '{{ url("api/topography/search") }}',
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return { q: params.term };
+            },
+            processResults: function (data) {
+                return {
+                     results: data 
+                    };
+            },
+        },
+        placeholder: 'Buscar código topográfico',
+        minimumInputLength: 2,
+      
+    });
+ $('#topography').on('select2:select', function (e) {
+            var data = e.params.data;
+            $('#cod_topo').val(data.id); // descripción
+            // si quieres guardar el código también, entonces:
+            // $('#codigocie').val(data.id);
+        });
+
+        </script>
+        @endpush
+
+
+                {{-- API3 --}}
+          @push('scripts')
+<script>
+    $('#morfologia').select2({
+        ajax: {
+            url: '{{ url("api/morfologia/search") }}',
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return { q: params.term };
+            },
+            processResults: function (data) {
+                return {
+                    results: data
+                };
+            }
+        },
+        placeholder: 'Buscar morfología',
+        minimumInputLength: 2
+    });
+
+    $('#morfologia').on('select2:select', function (e) {
+        var data = e.params.data;
+        $('#cod_morfo').val(data.id); // descripción
+        // Si quieres guardar el código también:
+        // $('#codigocie').val(data.id);
+    });
+</script>
+@endpush
+
