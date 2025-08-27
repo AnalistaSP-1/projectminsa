@@ -20,100 +20,134 @@
 
 
             <div class="container mt-4">
-                <h2>Editar Registro: {{ $data->historia_clinica }}</h2>
-
+                {{-- <h2>Editar Registro: {{ $data->historia_clinica }}</h2> --}}
+<div class="container mt-4">
+    <div class="card mb-4 shadow-sm">
+<div class="card-header text-white" style="background-color: #6f42c1;">Datos Personales</div>
+        <div class="card-body">
             <form method="POST" action="{{ route('minsa.update', $data->historia_clinica) }}">
-                    @csrf
-                    @method('PUT') {{-- Para métodos PUT en Laravel --}}
-                    <div class="row">
-
-                        <div class="col-md-3 mb-3">
-                            <label for="historia_clinica" class="form-label">Historia Clínica</label>
-                            <input type="text" id="historia_clinica"
-                value="{{ old('historia_clinica', $data->historia_clinica) }}"
-                class="form-control" readonly>
-                        </div>
+                @csrf
+                @method('PUT')
                 
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label for="historia_clinica" class="form-label">Historia Clínica</label>
+                        <input type="text" id="historia_clinica" 
+                            value="{{ old('historia_clinica', $data->historia_clinica) }}" 
+                            class="form-control" readonly>
+                    </div>
 
-                            <div class="col-md-3 mb-3">
-                                <label for="nombres" class="form-label">Nombres</label>
-                                <input type="text" id="nombres" value="{{ old('nombres', $data->nombres) }}" class="form-control" disabled>
-                            </div>
+                    <div class="col-md-3">
+                        <label for="nombres" class="form-label">Nombres</label>
+                        <input type="text" id="nombres" 
+                            value="{{ old('nombres', $data->nombres) }}" 
+                            class="form-control" disabled>
+                    </div>
 
-                            <div class="col-md-3 mb-3">
-                                <label for="apepat" class="form-label">Apellido Paterno</label>
-                                <input type="text" id="apepat" value="{{ old('apepat', $data->apepat) }}" class="form-control" disabled>
-                            </div>
+                    <div class="col-md-3">
+                        <label for="apepat" class="form-label">Apellido Paterno</label>
+                        <input type="text" id="apepat" 
+                            value="{{ old('apepat', $data->apepat) }}" 
+                            class="form-control" disabled>
+                    </div>
 
-                            <div class="col-md-3 mb-3">
-                                <label for="apemat" class="form-label">Apellido Materno</label>
-                                <input type="text" id="apemat" value="{{ old('apemat', $data->apemat) }}" class="form-control" disabled>
-                            </div>
+                    <div class="col-md-3">
+                        <label for="apemat" class="form-label">Apellido Materno</label>
+                        <input type="text" id="apemat" 
+                            value="{{ old('apemat', $data->apemat) }}" 
+                            class="form-control" disabled>
+                    </div>
 
-                            <div class="col-md-3 mb-3">
-                                <label for="numdoc" class="form-label">DNI</label>
-                                <input type="text" id="numdoc" value="{{ old('numdoc', $data->numdoc) }}" class="form-control" disabled>
-                            </div>
+                    <div class="col-md-2">
+                        <label for="numdoc" class="form-label">DNI</label>
+                        <input type="text" id="numdoc" 
+                            value="{{ old('numdoc', $data->numdoc) }}" 
+                            class="form-control" disabled>
+                    </div>
 
-                            <div class="col-md-3 mb-3">
-                                <label for="medico" class="form-label">CMP</label>
-                                <input type="text" id="medico" value="{{ old('medico', $data->medico) }}" class="form-control" disabled>
-                            </div>
+                    <div class="col-md-2">
+                        <label for="medico" class="form-label">CMP</label>
+                        <input type="text" id="medico" 
+                            value="{{ old('medico', $data->medico) }}" 
+                            class="form-control" disabled>
+                    </div>
 
-                            <div class="col-md-3 mb-3">
-                                <label for="tipodoc" class="form-label">Tipo Doc</label>
-                                <input type="text" id="tipodoc" value="{{ old('tipodoc', $data->tipodoc) }}" class="form-control" disabled>
-                            </div>
+                    <div class="col-md-2">
+                        <label for="tipodoc" class="form-label">Tipo Doc</label>
+                        <input type="text" id="tipodoc" 
+                            value="{{ old('tipodoc', $data->tipodoc) }}" 
+                            class="form-control" disabled>
+                    </div>
 
-                            <div class="col-md-3 mb-3">
-                                <label for="sexo" class="form-label">Sexo</label>
-                                <input type="text" id="sexo" value="{{ old('sexo', $data->sexo) }}" class="form-control" disabled>
-                            </div>
+                    <div class="col-md-2">
+                        <label for="sexo" class="form-label">Sexo</label>
+                        <input type="text" id="sexo" 
+                            value="{{ old('sexo', $data->sexo) }}" 
+                            class="form-control" disabled>
+                    </div>
 
-                            <div class="col-md-3 mb-3">
-                                <label for="fechanac" class="form-label">Fecha Nacimiento</label>
-                                <input type="text" id="fechanac" value="{{ old('fechanac', $data->fechanac) }}" class="form-control" disabled>
-                            </div>
+                    <div class="col-md-2">
+                        <label for="fechanac" class="form-label">Fecha Nacimiento</label>
+                        <input type="text" id="fechanac" 
+                            value="{{ old('fechanac', $data->fechanac) }}" 
+                            class="form-control" disabled>
+                    </div>
 
+                    <div class="col-md-2">
+                        <label for="telefono_res" class="form-label">Teléfono</label>
+                        <input type="text" id="telefono_res" 
+                            value="{{ old('telefono_res', $data->telefono_res) }}" 
+                            class="form-control" disabled>
+                    </div>
 
-                              <div class="col-md-3 mb-3">
-                                <label for="telefono_res" class="form-label">Telefono</label>
-                                <input type="text" id="telefono_res" value="{{ old('telefono_res', $data->telefono_res) }}" class="form-control" disabled>
-                            </div>
+                    <div class="col-md-2">
+                        <label for="celular_res" class="form-label">Celular</label>
+                        <input type="text" id="celular_res" 
+                            value="{{ old('celular_res', $data->celular_res) }}" 
+                            class="form-control" disabled>
+                    </div>
 
-                            <div class="col-md-3 mb-3">
-                                <label for="celular_res" class="form-label">Celular</label>
-                                <input type="text" id="celular_res" value="{{ old('celular_res', $data->celular_res) }}" class="form-control" disabled>
-                            </div>
+                    <div class="col-md-6">
+                        <label for="direccion" class="form-label">Dirección</label>
+                        <input type="text" id="direccion" 
+                            value="{{ old('direccion', $data->direccion) }}" 
+                            class="form-control" disabled>
+                    </div>
 
-                            <div class="col-md-6 mb-3">
-                                <label for="direccion" class="form-label">Dirección</label>
-                                <input type="text" id="direccion" value="{{ old('direccion', $data->direccion) }}" class="form-control" disabled>
-                            </div>
+                    <div class="col-md-3">
+                        <label for="codigocie" class="form-label">Código CIE</label>
+                        <input type="text" id="codigocie" 
+                            value="{{ old('codigocie', $data->codigocie) }}" 
+                            class="form-control" disabled>
+                    </div>
 
-                            <div class="col-md-3 mb-3">
-                                <label for="codigocie" class="form-label">Código CIE</label>
-                                <input type="text" id="codigocie" value="{{ old('codigocie', $data->codigocie) }}" class="form-control" disabled>
-                            </div>
+                    <div class="col-md-3">
+                        <label for="codigo_pais" class="form-label">Código País</label>
+                        <input type="text" id="codigo_pais" 
+                            value="{{ old('codigo_pais', $data->codigo_pais) }}" 
+                            class="form-control" disabled>
+                    </div>
 
-                            <div class="col-md-3 mb-3">
-                                <label for="codigo_pais" class="form-label">Código País</label>
-                                <input type="text" id="codigo_pais" value="{{ old('codigo_pais', $data->codigo_pais) }}" class="form-control" disabled>
-                            </div>
+                    <div class="col-md-3">
+                        <label for="fecha_min" class="form-label">Fecha Primera Evaluación</label>
+                        <input type="text" id="fecha_min" 
+                            value="{{ old('fecha_min', $data->fecha_min) }}" 
+                            class="form-control" disabled>
+                    </div>
 
-
-
-                            <div class="col-md-3 mb-3">
-                                <label for="codigo_pais" class="form-label">Fecha  Primera evaluacion</label>
-                                <input type="text" id="codigo_pais" value="{{ old('codigo_pais', $data->fecha_min) }}" class="form-control" disabled>
-                            </div>
-                            
-                            <div class="col-md-3 mb-3">
-                                <label for="codigo_pais" class="form-label">Fecha  Ultima evaluacion</label>
-                                <input type="text" id="codigo_pais" value="{{ old('codigo_pais', $data->fecha_max) }}" class="form-control" disabled>
-                            </div>
-                        </div>
-
+                    <div class="col-md-3">
+                        <label for="fecha_max" class="form-label">Fecha Última Evaluación</label>
+                        <input type="text" id="fecha_max" 
+                            value="{{ old('fecha_max', $data->fecha_max) }}" 
+                            class="form-control" disabled>
+                    </div>
+                </div>
+           
+        </div>
+    </div>
+</div>
+ {{-- ===================== ACABA EL CARD DE  DATOS PERSONALES  ===================== --}}
+                <div class="row">
         {{-- ===================== DATOS ADICIONALES ===================== --}}
                 <div class="row">
             <div class="col-md-4 mb-3">
@@ -247,6 +281,7 @@
                     @endforeach
                 </select>
             </div>
+            
                <div class="col-md-4 mb-3">
                 <label for="cause_of_death" class="form-label">Causa de Muerte</label>
                 <select name="cause_of_death" id="cause_of_death" class="form-control">
@@ -259,7 +294,7 @@
                 </select>
             </div>
       
-    <div class="col-md-3 mb-3">
+     <div class="col-md-4 mb-3">
             <label for="lugar_of_occurrence" class="form-label">Códigos Lugar de Ocurrencia</label>
             <select name="lugar_of_occurrence" id="lugar_of_occurrence" class="form-control">
                 <option value="">-- Códigos Lugar de Ocurrencia --</option>
@@ -271,7 +306,8 @@
             </select>
         </div>
 
-            <div class="col-md-3 mb-3">
+     <div class="col-md-4 mb-3">
+
             <label for="first_diasnosis_method" class="form-label">METODO DEL PRIMER DIAGNOSTICO</label>
             <select name="first_diasnosis_method" id="first_diasnosis_method" class="form-control">
                 <option value="">-- METODO DEL PRIMER DIAGNOSTICO--</option>
@@ -283,7 +319,8 @@
             </select>
          </div>
 
-            <div class="col-md-3 mb-3">
+     <div class="col-md-4 mb-3">
+
             <label for="laterality" class="form-label">Códigos Lateridad</label>
             <select name="laterality" id="laterality" class="form-control">
                 <option value="">-- Códigos Lateridad --</option>
@@ -294,7 +331,8 @@
                 @endforeach
             </select>
         </div>
-       <div class="col-md-3 mb-3">
+     <div class="col-md-4 mb-3">
+
             <label for="m_basic_ofdiagnosis" class="form-label"> METODO BASE DEL DIAGNOSTICO</label>
             <select name="m_basic_ofdiagnosis" id="m_basic_ofdiagnosis" class="form-control">
                 <option value="">-- METODO BASE DEL DIAGNOSTICO --</option>
@@ -306,7 +344,7 @@
             </select>
         </div>
 
-          <div class="col-md-3 mb-3">
+     <div class="col-md-4 mb-3">
             <label for="m_basic_ofdiagnosis" class="form-label"> DEPARTAMENTO O SERVICIO QUE REALIZA EL DIAGNOSTICO</label>
             <select name="diagnostic_service_department" id="diagnostic_service_department" class="form-control">
                 <option value="">-- DEPARTAMENTO O SERVICIO QUE REALIZA EL DIAGNOSTICO --</option>
@@ -318,7 +356,7 @@
             </select>
         </div>
 
-    <div class="col-md-3 mb-3">
+     <div class="col-md-4 mb-3">
             <label for="grado_of_diferentiation" class="form-label"> GRADO DE DIFERENCIACION</label>
             <select name="grado_of_diferentiation" id="grado_of_diferentiation" class="form-control">
                 <option value="">-- GRADO DE DIFERENCIACION --</option>
@@ -332,7 +370,7 @@
 
 
             
-            <div class="col-md-3 mb-3">
+     <div class="col-md-4 mb-3">
         <label for="fecha_papanicolau" class="form-label">Últ. Papanicolau</label>
         <input type="date" 
             name="fecha_papanicolau" 
@@ -342,7 +380,7 @@
     </div>
 
 
-            <div class="col-md-3 mb-3">
+     <div class="col-md-4 mb-3">
         <label for="fecha_ult_mamo" class="form-label">Últ. Mamografía</label>
         <input type="date" 
             name="fecha_ult_mamo" 
@@ -371,7 +409,7 @@
                     >
         </div>
         {{-- 250825 --}}
-        <div class="col-md-6 mb-3">
+        <div class="col-md-4 mb-3">
             <label for="diagnostico" class="form-label">Diagnóstico (CIE)</label>
             <select id="diagnostico" class="form-control"></select>
             <!-- Guardará la descripción -->
@@ -391,7 +429,7 @@
 
 {{-- 260823 0847 --}}
 
-    <div class="col-md-6 mb-3">
+    <div class="col-md-4 mb-3">
     <label for="topography" class="form-label">Código de topografía</label>
     <select id="topography" class="form-control"></select>
     <input type="hidden" name="cod_topo" id="cod_topo" value="{{ old('cod_topo', $data->cod_topo ?? '') }}">
@@ -411,7 +449,7 @@
 {{-- 260825 1656 --}}
 
 
-    <div class="col-md-6 mb-3">
+    <div class="col-md-4 mb-3">
     <label for="morfologia" class="form-label">Seleccione morfologia</label>
     <select id="morfologia" class="form-control"></select>
     <input type="hidden" name="cod_morfo" id="cod_morfo" value="{{old('cod_morfo',$data->cod_morfo ?? '')}}">
@@ -425,11 +463,106 @@
                 </ul>
             </div>
         @endif
+        </div>     
+        {{-- 270825 1656 --}}
+  <div class="col-md-3 mb-3">
+            <label for="diag_histologico">diagnóstico histológico</label>
+            <input type="text"
+                    class="form-control"
+                    id="diag_histologico"
+                    name="diag_histologico" 
+                    placeholder="ingresar diagnóstico histológico"
+                    value="{{old('diag_histologico', $data->diag_histologico ?? '')}}"
+                    >
         </div>
 
-        
-        {{-- 270825 1656 --}}
 
+
+  <div class="col-md-4 mb-3">
+            <label for=" nro_anatomia_pato">Nro. Anatomía Patológica</label>
+            <input type="text"
+                    class="form-control"
+                    id=" nro_anatomia_pato"
+                    name=" nro_anatomia_pato" 
+                    placeholder="ingresar anatomía patológica"
+                    value="{{old('diag_histologico', $data->nro_anatomia_pato ?? '')}}"
+                    >
+        </div>
+
+
+
+     <div class="col-md-3 mb-3">
+        <label for="fecha_exam_pato" class="form-label">fecha Exámen Patológico caritafeliz </label>
+        <input type="date" 
+            name="fecha_exam_pato" 
+            id="fecha_exam_pato" 
+            class="form-control"
+            value="{{ old('fecha_exam_pato', isset($data->fecha_exam_pato) ? \Carbon\Carbon::parse($data->fecha_exam_pato)->format('Y-m-d') : '') }}">
+    </div>
+
+
+
+        <div class="col-md-4 mb-3">
+        <label for="tra_cir" class="form-label">Indicador Tratamiento Cirugía</label>
+
+        <select name="tra_cir" id="tra_cir" class="form-select" aria-label="Default select example">
+            <option value="">-- Seleccione --</option>
+            <option value="1" {{ old('tra_cir', $data->tra_cir ?? '') == "1" ? 'selected' : '' }}>Sí</option>
+            <option value="0" {{ old('tra_cir', $data->tra_cir ?? '') == "0" ? 'selected' : '' }}>No</option>
+        </select>
+
+<div class="col-md-4 mb-3" id="campo-fecha" hidden>
+        <label for="fecha_tra_cir" class="form-label">Fecha Tratamiento Cirugía</label>
+        <input type="date" 
+            name="fecha_tra_cir" 
+            id="fecha_tra_cir" 
+            class="form-control"
+            value="{{ old('fecha_tra_cir', isset($data->fecha_tra_cir) ? \Carbon\Carbon::parse($data->fecha_tra_cir)->format('Y-m-d') : '') }}">
+    </div>
+<script>
+    const select = document.getElementById('tra_cir');
+    const campoFecha = document.getElementById('campo-fecha');
+
+    const toggleFecha = () => campoFecha.hidden = (select.value !== "1");
+
+    toggleFecha(); // Estado inicial
+    select.addEventListener('change', toggleFecha);
+</script>
+
+
+        {{-- ===================== DIAGNÓSTICOS ===================== --}}
+
+{{-- Indicador Tratamiento Medicina Nucelar --}}
+
+<div class="col-md-4 mb-3">
+    <label for="tra_med_nuclear" class="form-label">Indicador Tratamiento Medicina Nuclear</label>
+    <select name="tra_med_nuclear" id="tra_med_nuclear" class="form-select" aria-label="Default select example">
+        <option value="">-- Seleccione --</option>
+        <option value="1" {{ old('tra_med_nuclear', $data->tra_med_nuclear ?? '') == "1" ? 'selected' : '' }}>Sí</option>
+        <option value="0" {{ old('tra_med_nuclear', $data->tra_med_nuclear ?? '') == "0" ? 'selected' : '' }}>No</option>
+    </select>
+</div>
+
+<div class="col-md-4 mb-3" id="campo-fecha" hidden>
+    <label for="fecha_tra_med_nuclear" class="form-label">Fecha Tratamiento Medicina Nuclear</label>
+    <input type="date"
+        name="fecha_tra_med_nuclear"
+        id="fecha_tra_med_nuclear"
+        class="form-control"
+        value="{{ old('fecha_tra_med_nuclear', isset($data->fecha_tra_med_nuclear) ? \Carbon\Carbon::parse($data->fecha_tra_med_nuclear)->format('Y-m-d') : '') }}">
+</div>
+
+<script>
+    const select = document.getElementById('tra_med_nuclear');
+    const campoFecha = document.getElementById('campo-fecha');
+
+    const toggleFecha = () => {
+        campoFecha.hidden = (select.value !== "1");
+    };
+
+    toggleFecha(); // Estado inicial
+    select.addEventListener('change', toggleFecha);
+</script>
 
         {{-- ===================== BOTONES ===================== --}}
         <div class="d-flex gap-2 mt-3">

@@ -156,10 +156,18 @@ public function update(Request $request, $historia_clinica)
         //NUEVO 250825 15:18
         $mDatatransfer->dx_clinico = $request->dx_clinico; // descripción
 
-        //NUEVO 260825 08:49
-$mDatatransfer->cod_topo = $request->cod_topo;
-        //NUEVO 270825 08:21
-$mDatatransfer->cod_morfo = $request->cod_morfo;
+                //NUEVO 260825 08:49
+        $mDatatransfer->cod_topo = $request->cod_topo;
+                //NUEVO 270825 08:21
+        $mDatatransfer->cod_morfo = $request->cod_morfo;
+        $mDatatransfer->diag_histologico= $request->diag_histologico;
+        $mDatatransfer->nro_anatomia_pato= $request->nro_anatomia_pato;
+        $mDatatransfer->fecha_exam_pato = $request->fecha_exam_pato;
+        $mDatatransfer->tra_cir = $request->tra_cir;
+        $mDatatransfer->fecha_tra_cir = $request->fecha_tra_cir;
+        $mDatatransfer->tra_med_nuclear = $request->tra_med_nuclear;
+        $mDatatransfer->fecha_tra_med_nuclear = $request->fecha_tra_med_nuclear;
+
 
 
         $mDatatransfer->created_at = now(); 
