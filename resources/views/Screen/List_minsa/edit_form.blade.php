@@ -23,7 +23,7 @@
                 {{-- <h2>Editar Registro: {{ $data->historia_clinica }}</h2> --}}
 <div class="container mt-4">
     <div class="card mb-4 shadow-sm">
-<div class="card-header text-white" style="background-color: #6f42c1;">Datos Personales</div>
+<div class="card-header text-white" style="background-color: #4e175f;">Datos Personales Paciente</div>
         <div class="card-body">
             <form method="POST" action="{{ route('minsa.update', $data->historia_clinica) }}">
                 @csrf
@@ -146,11 +146,20 @@
         </div>
     </div>
 </div>
+
  {{-- ===================== ACABA EL CARD DE  DATOS PERSONALES  ===================== --}}
-                <div class="row">
         {{-- ===================== DATOS ADICIONALES ===================== --}}
-                <div class="row">
-            <div class="col-md-4 mb-3">
+ <div class="container mt-4">
+{{-- <h2>Editar Registro: {{ $data->historia_clinica }}</h2> --}}
+<div class="container mt-4">
+    <div class="card mb-4 shadow-sm">
+<div class="card-header text-white" style="background-color: #de7500;">Registrar</div>
+
+
+        <div class="card-body">
+
+        <div class="row g-3">
+        <div class="col-md-3">
             <label for="class_Diagnosticado" class="form-label">CLASE DE CASO</label>
         <select name="class_Diagnosticado" id="class_Diagnosticado" class="form-control">
             <option value="">-- Seleccione --</option>
@@ -161,10 +170,10 @@
                 </option>
             @endforeach
         </select>
+     </div>
+                <!-- GRADO DE INSTRUCCIÓN -->
 
-        </div>
-
-            <div class="col-md-4 mb-3">
+              <div class="col-md-3">
                 <label for="nivel_of_education" class="form-label">GRADO DE INSTRUCCIÓN</label>
                 <select name="nivel_of_education" id="nivel_of_education" class="form-control">
                     <option value="">-- Seleccione grado de instrucción --</option>
@@ -176,7 +185,7 @@
                 </select>
             </div>
 
-            <div class="col-md-4 mb-3">
+                <div class="col-md-3">
                 <label for="ocupacion" class="form-label">Ocupación</label>
                 <select name="ocupacion" id="ocupacion" class="form-control">
                     <option value="">-- Seleccione ocupación --</option>
@@ -189,9 +198,8 @@
             </div>
 
          
-
-            <div class="col-md-4 mb-3">
-                <label for="type_of_seguro" class="form-control">Tipo de Seguro</label>
+         <div class="col-md-3">
+                <label for="type_of_seguro" class="form-label">Tipo de Seguro</label>
                 <select name="type_of_seguro" id="type_of_seguro" class="form-control">
                     <option value="">-- Seleccione tipo de seguro --</option>
                     @foreach($type_of_seguro as $item)
@@ -202,8 +210,9 @@
                 </select>
             </div>
 
-            <div class="col-md-4 mb-3">
-                <label for="reference_type" class="form-label">Tipo de Referencia</label>
+       
+           <div class="col-md-3">
+                <label for="reference_type" class="form-label"></label>
                 <select name="reference_type" id="reference_type" class="form-control">
                     <option value="">-- Tipo de Referencia --</option>
                     @foreach($reference_type as $item)
@@ -216,8 +225,8 @@
     
 
         {{-- ===================== CLASIFICACIÓN TNM ===================== --}}
-                    <div class="col-md-4 mb-3">
-                <label for="tnm_tdx_codes" class="form-label">Códigos TNM (TDx)</label>
+                    <div class="col-md-3">
+                <label for="tnm_tdx_codes" class="form-label"></label>
                 <select name="tnm_tdx_codes" id="tnm_tdx_codes" class="form-control">
                     <option value="">-- Códigos TNM (TDx) --</option>
                     @foreach($tnm_tdx_codes as $item)
@@ -230,8 +239,8 @@
             </div>
 
 
-                <div class="col-md-4 mb-3">
-        <label for="tnm_ndx_codes" class="form-label">Códigos NDX</label>
+                <div class="col-md-3">
+        <label for="tnm_ndx_codes" class="form-label"></label>
         <select name="tnm_ndx_codes" id="tnm_ndx_codes" class="form-control">
             <option value="">-- Códigos NDX --</option>
             @foreach($tnm_ndx_codes as $item)
@@ -243,8 +252,8 @@
                     </select>
                 </div>
 
-                <div class="col-md-4 mb-3">
-                    <label for="tnm_mdx_codes" class="form-label">Códigos MDX</label>
+            <div class="col-md-3">
+                    <label for="tnm_mdx_codes" class="form-label"></label>
                     <select name="tnm_mdx_codes" id="tnm_mdx_codes" class="form-control">
                         <option value="">-- Códigos MDX --</option>
                         @foreach($tnm_mdx_codes as $item)
@@ -256,8 +265,8 @@
                     </select>
                 </div>
 
-                <div class="col-md-3 mb-3">
-                    <label for="clinical_estudio" class="form-label"> ESTADIO CLINICO</label>
+                  <div class="col-md-3">
+                    <label for="clinical_estudio" class="form-label"></label>
                     <select name="clinical_estudio" id="clinical_estudio" class="form-control">
                         <option value="">--  ESTADIO CLINICO --</option>
                         @foreach($clinical_estudio as $item)
@@ -270,10 +279,10 @@
         
 
 
-                 <div class="col-md-4 mb-3">
+              <div class="col-md-3">
                 <label for="case_status" class="form-label">Estado del Caso</label>
                 <select name="case_status" id="case_status" class="form-control">
-                    <option value="">-- Seleccione estado del caso --</option>
+                    <option value="">-- Estado del caso --</option>
                     @foreach($case_status as $item)
                         <option value="{{ $item->codigo }}" {{ old('case_status', $data->case_status) == $item->codigo ? 'selected' : '' }}>
                             {{ $item->descripcion }}
@@ -282,7 +291,8 @@
                 </select>
             </div>
             
-               <div class="col-md-4 mb-3">
+              
+              <div class="col-md-3">
                 <label for="cause_of_death" class="form-label">Causa de Muerte</label>
                 <select name="cause_of_death" id="cause_of_death" class="form-control">
                     <option value="">-- Seleccione causa de muerte --</option>
@@ -294,7 +304,8 @@
                 </select>
             </div>
       
-     <div class="col-md-4 mb-3">
+  
+              <div class="col-md-3">
             <label for="lugar_of_occurrence" class="form-label">Códigos Lugar de Ocurrencia</label>
             <select name="lugar_of_occurrence" id="lugar_of_occurrence" class="form-control">
                 <option value="">-- Códigos Lugar de Ocurrencia --</option>
@@ -306,8 +317,8 @@
             </select>
         </div>
 
-     <div class="col-md-4 mb-3">
 
+              <div class="col-md-3">
             <label for="first_diasnosis_method" class="form-label">METODO DEL PRIMER DIAGNOSTICO</label>
             <select name="first_diasnosis_method" id="first_diasnosis_method" class="form-control">
                 <option value="">-- METODO DEL PRIMER DIAGNOSTICO--</option>
@@ -319,7 +330,7 @@
             </select>
          </div>
 
-     <div class="col-md-4 mb-3">
+      <div class="col-md-3">
 
             <label for="laterality" class="form-label">Códigos Lateridad</label>
             <select name="laterality" id="laterality" class="form-control">
@@ -331,7 +342,7 @@
                 @endforeach
             </select>
         </div>
-     <div class="col-md-4 mb-3">
+     <div class="col-md-3">
 
             <label for="m_basic_ofdiagnosis" class="form-label"> METODO BASE DEL DIAGNOSTICO</label>
             <select name="m_basic_ofdiagnosis" id="m_basic_ofdiagnosis" class="form-control">
@@ -344,7 +355,7 @@
             </select>
         </div>
 
-     <div class="col-md-4 mb-3">
+     <div class="col-md-3">
             <label for="m_basic_ofdiagnosis" class="form-label"> DEPARTAMENTO O SERVICIO QUE REALIZA EL DIAGNOSTICO</label>
             <select name="diagnostic_service_department" id="diagnostic_service_department" class="form-control">
                 <option value="">-- DEPARTAMENTO O SERVICIO QUE REALIZA EL DIAGNOSTICO --</option>
@@ -356,7 +367,7 @@
             </select>
         </div>
 
-     <div class="col-md-4 mb-3">
+   <div class="col-md-3">
             <label for="grado_of_diferentiation" class="form-label"> GRADO DE DIFERENCIACION</label>
             <select name="grado_of_diferentiation" id="grado_of_diferentiation" class="form-control">
                 <option value="">-- GRADO DE DIFERENCIACION --</option>
@@ -370,7 +381,7 @@
 
 
             
-     <div class="col-md-4 mb-3">
+      <div class="col-md-3">
         <label for="fecha_papanicolau" class="form-label">Últ. Papanicolau</label>
         <input type="date" 
             name="fecha_papanicolau" 
@@ -380,7 +391,7 @@
     </div>
 
 
-     <div class="col-md-4 mb-3">
+   <div class="col-md-3">
         <label for="fecha_ult_mamo" class="form-label">Últ. Mamografía</label>
         <input type="date" 
             name="fecha_ult_mamo" 
@@ -389,7 +400,7 @@
             value="{{ old('fecha_ult_mamo', isset($data->fecha_ult_mamo) ? \Carbon\Carbon::parse($data->fecha_ult_mamo)->format('Y-m-d') : '') }}">
     </div>
 
-        <div class="col-md-4 mb-3">
+          <div class="col-md-3">
         <label for="rec_vac_papiloma" class="form-label">VACUNA PAPILOMA</label>
 
         <select name="rec_vac_papiloma" id="rec_vac_papiloma" class="form-select" aria-label="Default select example">
@@ -397,19 +408,19 @@
             <option value="1" {{ old('rec_vac_papiloma', $data->rec_vac_papiloma ?? '') == "1" ? 'selected' : '' }}>Sí</option>
             <option value="0" {{ old('rec_vac_papiloma', $data->rec_vac_papiloma ?? '') == "0" ? 'selected' : '' }}>No</option>
         </select>
-
-        <div class="col-md-4 mb-3">
-            <label for="temf_dias">Tiempo de enfermedad</label>
+           </div>
+         <div class="col-md-3">
+            <label for="temf_dias" class="form-label">Tiempo de enfermedad</label>
             <input type="text"
                     class="form-control"
                     id="temf_dias"
                     name="temf_dias" 
                     placeholder="Tiempo de enfermedad"
-                    value="{{old('temf_dias', $data->temf_dias ?? '')}}"
-                    >
+                    value="{{old('temf_dias', $data->temf_dias ?? '')}}">
         </div>
+     
         {{-- 250825 --}}
-        <div class="col-md-4 mb-3">
+<div class="col-md-3"> <!-- ahora sí, nueva columna -->
             <label for="diagnostico" class="form-label">Diagnóstico (CIE)</label>
             <select id="diagnostico" class="form-control"></select>
             <!-- Guardará la descripción -->
@@ -425,11 +436,11 @@
                 </ul>
             </div>
         @endif
-        </div>
+     
 
 {{-- 260823 0847 --}}
 
-    <div class="col-md-4 mb-3">
+     <div class="col-md-3">
     <label for="topography" class="form-label">Código de topografía</label>
     <select id="topography" class="form-control"></select>
     <input type="hidden" name="cod_topo" id="cod_topo" value="{{ old('cod_topo', $data->cod_topo ?? '') }}">
@@ -444,12 +455,12 @@
                 </ul>
             </div>
         @endif
-        </div>
+    
 
 {{-- 260825 1656 --}}
 
 
-    <div class="col-md-4 mb-3">
+      <div class="col-md-3">
     <label for="morfologia" class="form-label">Seleccione morfologia</label>
     <select id="morfologia" class="form-control"></select>
     <input type="hidden" name="cod_morfo" id="cod_morfo" value="{{old('cod_morfo',$data->cod_morfo ?? '')}}">
@@ -463,9 +474,9 @@
                 </ul>
             </div>
         @endif
-        </div>     
+          
         {{-- 270825 1656 --}}
-  <div class="col-md-3 mb-3">
+   <div class="col-md-3">
             <label for="diag_histologico">diagnóstico histológico</label>
             <input type="text"
                     class="form-control"
@@ -477,8 +488,7 @@
         </div>
 
 
-
-  <div class="col-md-4 mb-3">
+   <div class="col-md-3">
             <label for=" nro_anatomia_pato">Nro. Anatomía Patológica</label>
             <input type="text"
                     class="form-control"
@@ -490,8 +500,7 @@
         </div>
 
 
-
-     <div class="col-md-3 mb-3">
+   <div class="col-md-3">
         <label for="fecha_exam_pato" class="form-label">fecha Exámen Patológico caritafeliz </label>
         <input type="date" 
             name="fecha_exam_pato" 
@@ -502,7 +511,7 @@
 
 
 
-        <div class="col-md-4 mb-3">
+           <div class="col-md-3">
         <label for="tra_cir" class="form-label">Indicador Tratamiento Cirugía</label>
 
         <select name="tra_cir" id="tra_cir" class="form-select" aria-label="Default select example">
@@ -528,14 +537,14 @@
     toggleFecha(); // Estado inicial
     select.addEventListener('change', toggleFecha);
 </script>
-
-
+///////////////
+</div>
         {{-- ===================== DIAGNÓSTICOS ===================== --}}
 
 {{-- Indicador Tratamiento Medicina Nucelar --}}
 
-<div class="col-md-4 mb-3">
-    <label for="tra_med_nuclear" class="form-label">Indicador Tratamiento Medicina Nuclear</label>
+   <div class="col-md-3">   
+     <label for="tra_med_nuclear" class="form-label">Tratamiento Medicina Nuclear</label>
     <select name="tra_med_nuclear" id="tra_med_nuclear" class="form-select" aria-label="Default select example">
         <option value="">-- Seleccione --</option>
         <option value="1" {{ old('tra_med_nuclear', $data->tra_med_nuclear ?? '') == "1" ? 'selected' : '' }}>Sí</option>
@@ -563,7 +572,12 @@
     toggleFecha(); // Estado inicial
     select.addEventListener('change', toggleFecha);
 </script>
-
+       </div>
+                </div>
+           
+        </div>
+    </div>
+</div>
         {{-- ===================== BOTONES ===================== --}}
         <div class="d-flex gap-2 mt-3">
             <button type="submit" class="btn btn-success">Enviar datos</button>
