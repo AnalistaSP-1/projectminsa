@@ -279,17 +279,7 @@
         
 
 
-              <div class="col-md-3">
-                <label for="case_status" class="form-label">Estado del Caso</label>
-                <select name="case_status" id="case_status" class="form-control">
-                    <option value="">-- Estado del caso --</option>
-                    @foreach($case_status as $item)
-                        <option value="{{ $item->codigo }}" {{ old('case_status', $data->case_status) == $item->codigo ? 'selected' : '' }}>
-                            {{ $item->descripcion }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
+            
             
               
               <div class="col-md-3">
@@ -747,6 +737,81 @@
     toggleFechaRef(); // Estado inicial
     selectRef.addEventListener('change', toggleFechaRef);
     </script>
+
+
+{{--01/09/25 Fecha Referencia para Tratamiento --}}
+
+         
+      <div class="col-md-3">
+        <label for="fecha_tra_eess_ref" class="form-label">Fecha Referencia para Tratamiento</label>
+        <input type="date" 
+            name="fecha_tra_eess_ref" 
+            id="fecha_tra_eess_ref" 
+            class="form-control"
+            value="{{ old('fecha_tra_eess_ref', isset($data->fecha_tra_eess_ref) ? \Carbon\Carbon::parse($data->fecha_tra_eess_ref)->format('Y-m-d') : '') }}">
+    </div>
+{{--01/09/25 Indicador Ningun Tratamiento --}}
+        <div class="col-md-3">
+                <label for="tra_ninguno" class="form-label">Indicador Ningun Tratamiento</label>
+                <select name="tra_ninguno" id="tra_ninguno" class="form-select" aria-label="Default select example">
+                    <option value="">-- Seleccione --</option>
+                    <option value="1" {{ old('tra_ninguno', $data->tra_ninguno ?? '') == "1" ? 'selected' : '' }}>Sí</option>
+                    <option value="0" {{ old('tra_ninguno', $data->tra_ninguno ?? '') == "0" ? 'selected' : '' }}>No</option>
+                </select>
+                </div>
+        <div class="col-md-4 mb-3" id="campo-fecha-ini" hidden>
+            <label for="fecha_ini_tra" class="form-label">fecha Inicio Tratamiento</label>
+            <input type="date"
+                name="fecha_ini_tra"
+                id="fecha_ini_tra"
+                class="form-control"
+                value="{{old('fecha_ini_tra', isset($data->fecha_ini_tra) ? \Carbon\Carbon::parse($data->fecha_ini_tra)->format('Y-m-d') : '')}}"> 
+        </div>
+        <script>
+            const selectNinguno = document.getElementById('tra_ninguno');
+            const campoFechaini= document.getElementById('campo-fecha-ini');
+            const toggleFechaCul = () => campoFechaini.hidden = (selectNinguno.value !== "1");
+            toggleFechaCul(); // Estado inicial
+            selectNinguno.addEventListener('change', toggleFechaCul);
+            </script>
+{{--01/09/25 Fecha Culminación  Tratamiento--}}         
+      <div class="col-md-3">
+        <label for="fecha_cul_tra" class="form-label">Fecha Culminación Tratamiento</label>
+        <input type="date" 
+            name="fecha_cul_tra" 
+            id="fecha_cul_tra" 
+            class="form-control"
+            value="{{ old('fecha_cul_tra', isset($data->fecha_cul_tra) ? \Carbon\Carbon::parse($data->fecha_cul_tra)->format('Y-m-d') : '') }}">
+    </div>
+
+
+
+
+
+
+
+
+
+
+  <div class="col-md-3">
+                <label for="case_status" class="form-label">Estado del Caso</label>
+                <select name="case_status" id="case_status" class="form-control">
+                    <option value="">-- Estado del caso --</option>
+                    @foreach($case_status as $item)
+                        <option value="{{ $item->codigo }}" {{ old('case_status', $data->case_status) == $item->codigo ? 'selected' : '' }}>
+                            {{ $item->descripcion }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+
+
+
+
+
+
+
         {{-- ===================== BOTONES ===================== --}}
         <div class="d-flex gap-2 mt-3">
             <button type="submit" class="btn btn-success">Enviar datos</button>

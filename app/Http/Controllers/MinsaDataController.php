@@ -186,8 +186,14 @@ public function update(Request $request, $historia_clinica)
 
         $mDatatransfer->tra_ref= $request->tra_ref;
         $mDatatransfer->tra_eess_ref= $request->tra_eess_ref;
+        
+        $mDatatransfer->fecha_tra_eess_ref= $request->fecha_tra_eess_ref;
 
-  
+        $mDatatransfer->tra_ninguno= $request->tra_ninguno; //nuevo 010925
+        $mDatatransfer->fecha_ini_tra= $request->fecha_ini_tra; //nuevo 010925
+        $mDatatransfer->fecha_cul_tra= $request->fecha_cul_tra; //nuevo 010925
+
+
 
         $mDatatransfer->created_at = now(); 
         $mDatatransfer->created_by = auth()->id();
@@ -207,3 +213,4 @@ public function update(Request $request, $historia_clinica)
 //     $data = MinsaData::where('historia_clinica', $historia_clinica)->firstOrFail();
 //     return view('Screen.List_minsa.edit_form', compact('data'));
 // }
+
