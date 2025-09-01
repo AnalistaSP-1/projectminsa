@@ -595,7 +595,7 @@
 
 {{-- 270825v3.1 Indicador Tratamiento Radioterapia  --}}
 <div class="col-md-3">   
-    <label for="tra_rad" class="form-label">Tratamiento Radioterapia</label>
+    <label for="tra_rad" class="form-label">Tratamiento Radioterapia </label>
     <select name="tra_rad" id="tra_rad" class="form-select" aria-label="Default select example">
         <option value="">-- Seleccione --</option>
         <option value="1" {{ old('tra_rad', $data->tra_rad ?? '') == "1" ? 'selected' : '' }}>Sí</option>
@@ -622,7 +622,131 @@
     selectRad.addEventListener('change', toggleFechaRad);
 </script>
 
+{{-- 01/09/25 Indicador Tratamiento Quimioterapia --}}
+<div class="col-md-3">   
+    <label for="tra_qui" class="form-label">Tratamiento Quimioterapia 🤖</label>
+        <select name="tra_qui" id="tra_qui" class="form-select" aria-label="Default select example">
+            <option value="">-- Seleccione --</option>
+            <option value="1" {{ old('tra_qui', $data->tra_qui ?? '') == "1" ? 'selected' : '' }}>Sí</option>
+            <option value="0" {{ old('tra_qui', $data->tra_qui ?? '') == "0" ? 'selected' : '' }}>No</option>
+        </select>
+</div>
+<div class="col-md-4 mb-3" id="campo-fecha-qui" hidden>
+    <label for="fecha_tra_qui" class="form-label">Fecha Tratamiento Quimioterapia</label>
+    <input type="date"
+        name="fecha_tra_qui"
+        id="fecha_tra_qui"
+        class="form-control"
+        value="{{old('fecha_tra_qui', isset($data->fecha_tra_qui) ? \Carbon\Carbon::parse($data->fecha_tra_qui)->format('Y-m-d') : '')}}">
+</div>
+<script>
+    const selectQui = document.getElementById('tra_qui');
+    const campoFechaQui = document.getElementById('campo-fecha-qui');
+    const toggleFechaQui = () => campoFechaQui.hidden = (selectQui.value !== "1");
+    toggleFechaQui(); // Estado inicial
+    selectQui.addEventListener('change', toggleFechaQui);
+    </script>
 
+{{-- 01/09/25 Indicador Tratamiento Cuidados --}}
+<div class="col-md-3">
+    <label for="tra_cui" class="form-label">Indicador Tratamiento Cuidados🤖</label>
+        <select name="tra_cui" id="tra_cui" class="form-select" aria-label="Default select example">
+            <option value="">-- Seleccione --</option>
+            <option value="1" {{ old('tra_cui', $data->tra_cui ?? '') == "1" ? 'selected' : '' }}>Sí</option>
+            <option value="0" {{ old('tra_cui', $data->tra_cui ?? '') == "0" ? 'selected' : '' }}>No</option>
+        </select>
+</div>
+<div class="col-md-4 mb-3" id="campo-fecha-cui" hidden>
+    <label for="fecha_tra_cui" class="form-label">Fecha Tratamiento Cuidados</label>
+    <input type="date"
+        name="fecha_tra_cui"
+        id="fecha_tra_cui"
+        class="form-control"
+        value="{{old('fecha_tra_cui', isset($data->fecha_tra_cui) ? \Carbon\Carbon::parse($data->fecha_tra_cui)->format('Y-m-d') : '')}}">
+</div>
+<script>
+    const selectCui = document.getElementById('tra_cui');
+    const campoFechaCui = document.getElementById('campo-fecha-cui'); 
+    const toggleFechaCui = () => campoFechaCui.hidden = (selectCui.value !== "1");
+    toggleFechaCui(); // Estado inicial
+    selectCui.addEventListener('change', toggleFechaCui);
+    </script>
+
+{{-- 01/09/25 Indicador Tratamiento Inmunoterapia--}}
+<div class="col-md-3">
+    <label for="tra_inmu" class="form-label">Indicador Tratamiento Inmunoterapia🤖nuevo</label>
+        <select name="tra_inmu" id="tra_inmu" class="form-select" aria-label="Default select example">
+            <option value="">-- Seleccione --</option>
+            <option value="1" {{ old('tra_inmu', $data->tra_inmu ?? '') == "1" ? 'selected' : '' }}>Sí</option>
+            <option value="0" {{ old('tra_inmu', $data->tra_inmu ?? '') == "0" ? 'selected' : '' }}>No</option>
+        </select>
+</div>
+
+<div class="col-md-4 mb-3" id="campo-fecha-inmu" hidden>
+    <label for="fecha_tra_inmu " class="form-label">Fecha Tratamiento 🤖</label>
+    <input type="date"
+        name="fecha_tra_inmu"
+        id="fecha_tra_inmu"
+        class="form-control"
+        value="{{old('fecha_tra_inmu', isset($data->fecha_tra_inmu) ? \Carbon\Carbon::parse($data->fecha_tra_inmu)->format('Y-m-d') : '')}}">
+</div>
+<script>
+    const selectInmu = document.getElementById('tra_inmu');
+    const campoFechaInmu = document.getElementById('campo-fecha-inmu');
+    const toggleFechaInmu = () => campoFechaInmu.hidden = (selectInmu.value !== "1");
+    toggleFechaInmu(); // Estado inicial
+    selectInmu.addEventListener('change', toggleFechaInmu);
+    </script>    
+{{-- 01/09/25 Indicador Tratamiento hormonoterapia--}}
+
+<div class="col-md-3">
+    <label for="tra_horm" class="form-label">Indicador Tratamiento Hormonoterapia🤖XD</label>
+        <select name="tra_horm" id="tra_horm" class="form-select" aria-label="Default select example">
+            <option value="">-- Seleccione --</option>
+            <option value="1" {{ old('tra_horm', $data->tra_horm ?? '') == "1" ? 'selected' : '' }}>Sí</option>
+            <option value="0" {{ old('tra_horm', $data->tra_horm ?? '') == "0" ? 'selected' : '' }}>No</option>
+        </select>
+</div>
+<div class="col-md-4 mb-3" id="campo-fecha-horm" hidden>
+    <label for="fecha_horm" class="form-label">Fecha Tratamiento Hormonoterapia🤖nuevo</label>
+    <input type="date"
+    name="fecha_horm"
+    id="fecha_horm"
+    class="form-control"
+    value="{{old('fecha_horm', isset($data->fecha_horm) ? \Carbon\Carbon::parse($data->fecha_horm)->format('Y-m-d') : '')}}">
+</div>
+<script>
+    const selectHorm = document.getElementById('tra_horm');
+    const campoFechaHorm = document.getElementById('campo-fecha-horm');
+    const toggleFechaHorm = () => campoFechaHorm.hidden = (selectHorm.value !== "1");
+    toggleFechaHorm(); // Estado inicial
+    selectHorm.addEventListener('change', toggleFechaHorm);
+    </script>
+
+{{-- 01/09/25 Indicador Tratamiento referido--}}
+<di class="col-md-3">
+    <label for="tra_ref" class="form-label">Indicador Tratamiento Referido🤖XD</label>
+        <select name="tra_ref" id="tra_ref" class="form-select" aria-label="Default select example">
+            <option value="">-- Seleccione --</option>
+            <option value="1" {{ old('tra_ref', $data->tra_ref ?? '') == "1" ? 'selected' : '' }}>Sí</option>
+            <option value="0" {{ old('tra_ref', $data->tra_ref ?? '') == "0" ? 'selected' : '' }}>No</option>
+        </select>
+</di>
+<div class="col-md-4 mb-3" id="campo-fecha-ref" hidden>
+    <label for="tra_eess_ref" class="form-label">Fecha Tratamiento Refer nuevo</label>
+    <input type="date"
+    name="tra_eess_ref"
+    id="tra_eess_ref"
+    class="form-control"
+    value="{{old('tra_eess_ref', isset($data->tra_eess_ref) ? \Carbon\Carbon::parse($data->tra_eess_ref)->format('Y-m-d') : '')}}">       
+</div>
+<script>
+    const selectRef = document.getElementById('tra_ref');
+    const campoFechaRef = document.getElementById('campo-fecha-ref');
+    const toggleFechaRef = () => campoFechaRef.hidden = (selectRef.value !== "1");
+    toggleFechaRef(); // Estado inicial
+    selectRef.addEventListener('change', toggleFechaRef);
+    </script>
         {{-- ===================== BOTONES ===================== --}}
         <div class="d-flex gap-2 mt-3">
             <button type="submit" class="btn btn-success">Enviar datos</button>

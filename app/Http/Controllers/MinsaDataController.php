@@ -172,6 +172,22 @@ public function update(Request $request, $historia_clinica)
 
         $mDatatransfer->tra_rad = $request->tra_rad; 
         $mDatatransfer->fecha_tra_rad  = $request->fecha_tra_rad; 
+        $mDatatransfer->tra_qui = $request->tra_qui;
+        $mDatatransfer->fecha_tra_qui = $request->fecha_tra_qui;
+
+        $mDatatransfer->tra_cui = $request->tra_cui;
+        $mDatatransfer->fecha_tra_cui = $request->fecha_tra_cui;
+        
+        $mDatatransfer->tra_inmu = $request->tra_inmu;
+        $mDatatransfer->fecha_tra_inmu = $request->fecha_tra_inmu;
+
+        $mDatatransfer->tra_horm = $request->tra_horm; //nuevo 010925
+        $mDatatransfer->fecha_horm = $request->fecha_horm;
+
+        $mDatatransfer->tra_ref= $request->tra_ref;
+        $mDatatransfer->tra_eess_ref= $request->tra_eess_ref;
+
+  
 
         $mDatatransfer->created_at = now(); 
         $mDatatransfer->created_by = auth()->id();
