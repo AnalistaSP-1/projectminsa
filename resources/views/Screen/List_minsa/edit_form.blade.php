@@ -280,32 +280,8 @@
 
 
             
-            
-              
-              <div class="col-md-3">
-                <label for="cause_of_death" class="form-label">Causa de Muerte</label>
-                <select name="cause_of_death" id="cause_of_death" class="form-control">
-                    <option value="">-- Seleccione causa de muerte --</option>
-                    @foreach($cause_of_death as $item)
-                        <option value="{{ $item->codigo }}" {{ old('cause_of_death', $data->cause_of_death_codigo) == $item->codigo ? 'selected' : '' }}>
-                            {{ $item->descripcion }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
+         
       
-  
-              <div class="col-md-3">
-            <label for="lugar_of_occurrence" class="form-label">Códigos Lugar de Ocurrencia</label>
-            <select name="lugar_of_occurrence" id="lugar_of_occurrence" class="form-control">
-                <option value="">-- Códigos Lugar de Ocurrencia --</option>
-                @foreach($lugar_of_occurrence as $item)
-                    <option value="{{ $item->codigo }}" {{ old('lugar_of_occurrence', $data->lugar_of_occurrence) == $item->codigo ? 'selected' : '' }}>
-                        {{ $item->descripcion }}
-                    </option>
-                @endforeach
-            </select>
-        </div>
 
 
               <div class="col-md-3">
@@ -785,20 +761,12 @@
     </div>
 
 
-
-
-
-
-
-
-
-
-  <div class="col-md-3">
-                <label for="case_status" class="form-label">Estado del Caso</label>
-                <select name="case_status" id="case_status" class="form-control">
+     <div class="col-md-3">
+        <label for="case_status" class="form-label">Estado del Caso</label>
+        <select name="status" id="status" class="form-control">
                     <option value="">-- Estado del caso --</option>
                     @foreach($case_status as $item)
-                        <option value="{{ $item->codigo }}" {{ old('case_status', $data->case_status) == $item->codigo ? 'selected' : '' }}>
+                        <option value="{{ $item->codigo }}" {{ old('status', $data->status) == $item->codigo ? 'selected' : '' }}>
                             {{ $item->descripcion }}
                         </option>
                     @endforeach
@@ -806,9 +774,79 @@
             </div>
 
 
+   
+              
+              <div class="col-md-3">
+                <label for="cause_of_death" class="form-label">Causa de Muerte</label>
+                <select name="cause_of_death" id="cause_of_death" class="form-control">
+                    <option value="">-- Seleccione causa de muerte --</option>
+                    @foreach($cause_of_death as $item)
+                        <option value="{{ $item->codigo }}" {{ old('cause_of_death', $data->cause_of_death_codigo) == $item->codigo ? 'selected' : '' }}>
+                            {{ $item->descripcion }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+
+  
+              <div class="col-md-3">
+            <label for="lugar_of_occurrence" class="form-label">Códigos Lugar de Ocurrencia</label>
+            <select name="lugar_of_occurrence" id="lugar_of_occurrence" class="form-control">
+                <option value="">-- Códigos Lugar de Ocurrencia --</option>
+                @foreach($lugar_of_occurrence as $item)
+                    <option value="{{ $item->codigo }}" {{ old('lugar_of_occurrence', $data->lugar_of_occurrence) == $item->codigo ? 'selected' : '' }}>
+                        {{ $item->descripcion }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
+        {{-- fecha de defunción --}}
+      <div class="col-md-3">
+        <label for="fecha_defun " class="form-label">Fecha Defunción </label>
+        <input type="date" 
+            name="fecha_defun" 
+            id="fecha_defun" 
+            class="form-control"
+            value="{{ old('fecha_defun', isset($data->fecha_defun) ? \Carbon\Carbon::parse($data->fecha_defun)->format('Y-m-d') : '') }}">
+    </div>
 
 
 
+        {{-- Causa final 01/09/25 --}}
+
+{{-- <div class="col-md-3">
+    <label for="causa_final" class="form-label">Causa Final</label>
+    <input type="date"
+        name="causa_final"
+        id="causa_final"
+        class="form-control"
+        value="{{ old('causa_final', isset($data->causa_final) ? \Carbon\Carbon::parse($data->causa_final)->format('Y-m-d') : '') }}">
+</div> --}}
+
+
+
+
+        {{-- 250825 --}}
+<div class="col-md-3"> <!-- ahora sí, nueva columna -->
+            <label for="causa_final_select" class="form-label">Causa básica de muerte</label>
+            <select id="causa_final_select" class="form-control"></select>
+            <!-- Guardará la descripción -->
+            <input type="hidden" name="causa_final" id="causa_final"
+             value="{{ old('causa_final', $data->causa_final ?? '') }}">
+        </div>
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+     
 
 
 
@@ -918,3 +956,56 @@
 </script>
 @endpush
 
+                {{-- API4 --}}
+@push('scripts')
+<script>
+$(function () {
+    // Inicializar select2
+    $('#causa_final_select').select2({
+        ajax: {
+            url: '{{ url("api/causes-death/search") }}',
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return { q: params.term };
+            },
+            processResults: function (data) {
+                // Mapeamos para que select2 use cod como id
+                return {
+                    results: data.map(function (item) {
+                        return {
+                            id: item.cod,   // select2 value
+                            text: item.text,
+                            cod: item.cod   // lo guardamos explícito
+                        };
+                    })
+                };
+            },
+        },
+        placeholder: 'Buscar causa de muerte',
+        minimumInputLength: 2
+    });
+
+    // Al seleccionar, guardar el COD en el hidden
+    $('#causa_final_select').on('select2:select', function (e) {
+        var data = e.params.data;
+        $('#causa_final').val(data.cod); // ← guarda el COD (texto)
+    });
+
+    // Pre-cargar si estamos editando y ya hay un COD guardado
+    var codGuardado = $('#causa_final').val();
+    if (codGuardado) {
+        $.ajax({
+            url: '{{ url("api/causes-death/by-cod") }}',
+            data: { cod: codGuardado },
+            success: function (row) {
+                if (row) {
+                    var option = new Option(row.text, row.id, true, true);
+                    $('#causa_final_select').append(option).trigger('change');
+                }
+            }
+        });
+    }
+});
+</script>
+@endpush

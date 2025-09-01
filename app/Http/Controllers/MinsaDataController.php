@@ -192,8 +192,9 @@ public function update(Request $request, $historia_clinica)
         $mDatatransfer->tra_ninguno= $request->tra_ninguno; //nuevo 010925
         $mDatatransfer->fecha_ini_tra= $request->fecha_ini_tra; //nuevo 010925
         $mDatatransfer->fecha_cul_tra= $request->fecha_cul_tra; //nuevo 010925
-
-
+        $mDatatransfer->fecha_defun= $request->fecha_defun; //nuevo 010925
+        $mDatatransfer->status = $request->status;
+        $mDatatransfer->causa_final = $request->causa_final; // descripción
 
         $mDatatransfer->created_at = now(); 
         $mDatatransfer->created_by = auth()->id();

@@ -8,6 +8,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\MinsaDataController;
 use App\Http\Controllers\DiagnosticController;
 use App\Http\Controllers\TopographyControlador;
+use App\Http\Controllers\CodeCausesDeathController;
 
 
 use App\Http\Controllers\MorfologiaControlador;
@@ -65,3 +66,6 @@ Route::get('/diagnostic/search', [DiagnosticController::class, 'search']);
 Route::get('/topography/search', [TopographyControlador::class, 'search']);
 //26v2
 Route::get('/morfologia/search', [MorfologiaControlador::class, 'search']);
+//27v1
+Route::get('/causes-death/search', [CodeCausesDeathController::class, 'search']);
+

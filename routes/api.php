@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DiagnosticController;
 use App\Http\Controllers\TopographyControlador;
 use App\Http\Controllers\MorfologiaControlador;
+use App\Http\Controllers\CodeCausesDeathController;
 
 
 /*
@@ -27,3 +28,5 @@ Route::get('/diagnostic/search', [DiagnosticController::class, 'search']);
 Route::get('/topography/search', [TopographyControlador::class, 'search']);
 
 Route::get('/morfologia/search', [MorfologiaControlador::class, 'search']);
+
+Route::get('/causes-death/search', [CodeCausesDeathController::class, 'search']);
