@@ -837,6 +837,21 @@
              value="{{ old('causa_final', $data->causa_final ?? '') }}">
         </div>
 
+{{-- Causa intermedia / 02/09/2025 --}}
+<div class="col-md-3">
+    <label for="causa_intermedia_select" class="form-label">Causa intermedia</label>
+    <select id="causa_intermedia_select" class="form-control"></select>
+    <input type="hidden" name="causa_intermedia" id="causa_intermedia"
+           value="{{ old('causa_intermedia', $data->causa_intermedia ?? '') }}">
+</div>
+{{-- Causa inmediata --}}
+<div class="col-md-3">
+    <label for="causa_basica_select" class="form-label">Causa inmediata</label>
+    <select id="causa_basica_select" class="form-control"></select>
+    <input type="hidden" name="causa_basica" id="causa_basica"
+           value="{{ old('causa_basica', $data->causa_basica ?? '') }}">
+</div>
+
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -847,6 +862,29 @@
             </div>
         @endif
      
+
+
+{{-- 02/09/2025 --}}
+{{-- <div class="col-md-3"> <!-- ahora sí, nueva columna -->
+            <label for="causa_final_select" class="form-label">Causa intermedia de muerte</label>
+            <select id="causa_final_select" class="form-control"></select>
+            <!-- Guardará la descripción -->
+            <input type="hidden" name="causa_intermedia " id="causa_intermedia "
+             value="{{ old('causa_intermedia ', $data->causa_intermedia  ?? '') }}">
+        </div>
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+      --}}
+
+
 
 
 
@@ -960,52 +998,57 @@
 @push('scripts')
 <script>
 $(function () {
-    // Inicializar select2
-    $('#causa_final_select').select2({
-        ajax: {
-            url: '{{ url("api/causes-death/search") }}',
-            dataType: 'json',
-            delay: 250,
-            data: function (params) {
-                return { q: params.term };
+    function inicializarSelect2(SelectId,hiddenId){
+        const $select = $('#'+SelectId); 
+        const $hidden = $('#'+hiddenId);
+        $select.select2({
+            ajax: {
+                url: '{{ url("api/causes-death/search") }}',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return { q: params.term };
+                },
+                processResults: function (data) {
+                    return {
+                        results: data.map(function (item) {
+                            return {
+                                id: item.cod,   // select2 value
+                                text: item.text,
+                                cod: item.cod   // lo guardamos explícito
+                            };
+                        })
+                    };
+                },
             },
-            processResults: function (data) {
-                // Mapeamos para que select2 use cod como id
-                return {
-                    results: data.map(function (item) {
-                        return {
-                            id: item.cod,   // select2 value
-                            text: item.text,
-                            cod: item.cod   // lo guardamos explícito
-                        };
-                    })
-                };
-            },
-        },
-        placeholder: 'Buscar causa de muerte',
-        minimumInputLength: 2
-    });
-
-    // Al seleccionar, guardar el COD en el hidden
-    $('#causa_final_select').on('select2:select', function (e) {
-        var data = e.params.data;
-        $('#causa_final').val(data.cod); // ← guarda el COD (texto)
-    });
-
-    // Pre-cargar si estamos editando y ya hay un COD guardado
-    var codGuardado = $('#causa_final').val();
-    if (codGuardado) {
-        $.ajax({
-            url: '{{ url("api/causes-death/by-cod") }}',
-            data: { cod: codGuardado },
-            success: function (row) {
-                if (row) {
-                    var option = new Option(row.text, row.id, true, true);
-                    $('#causa_final_select').append(option).trigger('change');
-                }
-            }
+            placeholder: 'Buscar causa de muerte',
+            minimumInputLength: 2
         });
+        $select.on('select2:select', function (e) {
+            var data = e.params.data;
+            $hidden.val(data.cod); // ← guarda el COD (texto)
+        });
+        var codGuardado = $hidden.val();
+        if (codGuardado) {
+            $.ajax({
+                url: '{{ url("api/causes-death/by-cod") }}',
+                data: { cod: codGuardado },
+                success: function (row) {
+                    if (row) {
+                        var option = new Option(row.text, row.id, true, true);
+                        $select.append(option).trigger('change');
+                    }
+                }
+            });
+        }
     }
-});
-</script>
-@endpush
+   
+   
+   
+   inicializarSelect2('causa_final_select','causa_final');
+   inicializarSelect2('causa_intermedia_select','causa_intermedia');
+   inicializarSelect2('causa_basica_select','causa_basica');
+ });
+
+ </script>
+ @endpush
